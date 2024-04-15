@@ -1,16 +1,41 @@
+#ifndef CIRCLE_H
+#define CIRCLE_H
+#include <iostream>
+#include <string>
 #include "Shape2D.h"
-#ifndef CIRCLE
-#define CIRCLE
 
 class Circle : public Shape2D {
 private:
-    float radius;
+	float radius;
 public:
-    Circle(float radius);
-    void CalculateArea() override;
-    void Scale(float ScaleFactor) override;
-    void ShowInfo() override;
-    std::string GetName() override;
+	Circle(float r) : radius(r) {} // Constructor
+
+	void CalculateArea() override {
+		area = 3.141592 * radius * radius;
+	}
+	float GetArea() override {
+		return area;
+	}
+	void Scale(float scaleFactor) override {
+		area = area * scaleFactor;
+	}
+	void ShowInfo() override {
+		std::cout << GetName() << std::endl;
+		std::cout << "Circle with radius: " << radius << " and area " << this->GetArea() << std::endl << std::endl;
+	}
+	std::string GetName() override {
+		return "Circle";
+	}
+	bool operator>(Shape2D& other) override {
+		return area > other.GetArea();
+	}
+	bool operator<(Shape2D& other) override {
+		return area < other.GetArea();
+	}
+	bool operator==(Shape2D& other) override {
+		return area == other.GetArea();
+	}
 };
 
-#endif
+
+#endif CIRCLE_H
