@@ -1,19 +1,17 @@
-#include "Shape.h"
-
 #ifndef SHAPE2D_H
 #define SHAPE2D_H
+#include <string>
+#include "Shape.h"
 
 class Shape2D : public Shape {
-private:
-    virtual void CalculateArea() = 0;
-    float area = 0;
+protected:
+	float area;
 public:
-    float GetArea() const;
-    void SetArea(float area_);
-    bool operator>(const Shape2D& other) const;
-    bool operator<(const Shape2D& other) const;
-    bool operator==(const Shape2D& other) const;
+	virtual float GetArea() = 0;
+	virtual bool operator>(Shape2D& other) = 0;
+	virtual bool operator<(Shape2D& other) = 0;
+	virtual bool operator==(Shape2D& other) = 0;
+	virtual void CalculateArea() = 0;
 };
 
-#endif
-
+#endif SHAPE2D_H
